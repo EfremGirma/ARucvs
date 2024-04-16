@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -92,6 +92,24 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+          
+            // 'mongodb'=>[
+            //     'driver'=>'mongodb',
+            //     'dns' => env('DB_URI','mongodb+srv://username:password@<atlas-cluster-uri>/arucvs?retryWrites=true&w=majority'),
+            // 'database'=>'arucvs',
+            // ],
+            
+            'mongodb'=>[
+                'driver'=>'mongodb',
+               'host' => env('MONGODB_HOST','127.0.0.1'),
+               'port' => env('MONGODB_PORT',27017),
+               'database' => env('MONGODB_DATABASE','arucvs'),
+               'username' => env('MONGODB_USERNAME',''),
+               'password' => env('MONGODB_PASSWORD',''),
+               'options'=>[
+                'database'=>'admin',
+               ]
+            ]
 
     ],
 

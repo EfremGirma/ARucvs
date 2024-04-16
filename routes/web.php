@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RouteManager;
 use Illuminate\Support\Facades\Route;
 
@@ -17,35 +18,40 @@ use Illuminate\Support\Facades\Route;
 // Route By Get
 Route::controller(RouteManager::class)->group(function () {
     Route::get('/', 'homeGet')->name('home.get');
-
 Route::get('/register', 'registerGet')->name('register.get');
-
 Route::get('/registerform', 'registerformGet')->name('registerform.get');
 Route::get('/login', 'loginGet')->name('login');
 Route::get('/aboutus',  'aboutGet')->name('aboutus.get');
 Route::get('/verifycv','verifycvGet')->name('verifycv.get');
 Route::get('/contactus', 'contactusGet')->name('contactus.get');
-Route::get('/userhome','userhomeGet')->name('userhome.get');
+// Route::get('/userhome','userhomeGet')->name('userhome.get');
+Route::get('/adminhome', 'adminhomeGet')->name('adminhome.get');
 
 });
 // Route By Post
 Route::controller(AuthManager::class)->group(function () {
     Route::post('/', 'homePost')->name('home.post');
     Route::post('/register','registerPost')->name('register.post');
-Route::get('/logout','logoutPost')->middleware('auth')->name('logout.post');
+Route::get('logout','logoutPost')->middleware('auth')->name('logout.post');
 Route::post('/registerform','registerformPost')->name('registerform.post');
 Route::post('/login','loginPost')->name('login.post');
 });
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/home',  'index')->name('home');
+});
 
-// Normal Users Routes List
-Route::middleware(['auth', 'user-access:user'])->group(function(){
-    Route::get('/home',[RouteManager::class,'userhomeGet'])->name('home.get');
+// Manager Route List
+Route::middleware(['auth','user-access:Manager'])->group(function(){
+    Route::get('/manager/home',[RouteManager::class,'managerhomeGet'])->name('managerhome.get');
 });
 // Admin Route List
-Route::middleware(['auth', 'user-access:admin'])->group(function (){
+Route::middleware(['auth', 'user-access:Admin'])->group(function (){
     Route::get('/admin/home',[RouteManager::class,'adminhomeGet'])->name('adminhome.get');
 });
-// // Manager Route List
-// Route::middleware(['auth','user-acces:manager'])->group(function(){
-//     Route::get('/manager/home',[RouteManager::class,'managerhomeGet'])->name('managerhome.get');
-// });
+
+// Normal Users Routes List
+Route::middleware(['auth', 'user-access:User'])->group(function(){
+    Route::get('/home',[RouteManager::class,'userhomeGet'])->name('userhome.get');
+});
+
+

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('/include/layout')
 @section('title','Verify_ARUCVS')
 @section('style')
 {{asset('css/verifystyle.css')}}

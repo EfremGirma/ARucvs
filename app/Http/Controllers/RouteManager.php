@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RouteManager extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
      public function homeGet(){
         return view('home');
     }
@@ -18,10 +22,10 @@ class RouteManager extends Controller
         return view('contactus');
     }
      public function registerGet(){
-        return view('register');
+        return view('registerform');
     }
      public function registerformGet(){
-        return view('registerform');
+        return view('registers');
     }
      public function loginGet(){
         return view('signup');
@@ -30,13 +34,13 @@ class RouteManager extends Controller
         return view('verifycv');
     }
     public function userhomeGet(){
-        return view('userhome');
+        return view('user/userhome');
     }
 
-    // public function adminhomeGet(){
-    //     return view('Admindash');
-    // }
-    // public function managerhomeGet(){
-    //     return view('Managerdash');
-    // }
+    public function adminhomeGet(){
+        return view('admin/Adminhome');
+    }
+    public function managerhomeGet(){
+        return view('manager/Managerhome');
+    }
 }

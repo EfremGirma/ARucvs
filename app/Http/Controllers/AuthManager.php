@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class AuthManager extends Controller
@@ -28,7 +29,7 @@ class AuthManager extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'type'=>"0"
+            'type'=>0,
         ]);
         return redirect()->route('login');
     }
@@ -50,18 +51,26 @@ class AuthManager extends Controller
 
         $request->session()->regenerate();
 
-       
-       if(auth()->user()->type == 'admin'){
-            return redirect()->route('Adminhome');
+        if(auth()->user()->type == 'Manager'){
+            return redirect()->route('managerhome.get');
+        }
+        elseif(auth()->user()->type == 'Admin')
+        {
+            return redirect()->route('adminhome.get');
+        }elseif(auth()->user()->type == 'User')
+        {
+            return redirect()->route('userhome.get');
         }else{
             return redirect()->route('home.get');
         }
+        
+        
 
-        // return redirect()->route('userhome.get');
     }
     public function logoutPost(Request $request){
         Auth::guard('web')->logout();
         $request->session()->invalidate();
-        return redirect('/userhome');
+
+        return redirect('/login');
     }
 }

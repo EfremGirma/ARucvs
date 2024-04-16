@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('..include.layout')
 @section('title','Extra_User Form_ARUCVS')
-@section('style')
-{{asset('css/Registerformstyle.css')}}
+@section('style1')
+{{asset('/css/Registerformstyle.css')}}
 @endsection
 @section('content')
 <section class="vh-70 bg-image"
@@ -14,7 +14,7 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-4">Create an account</h2>
 
-              <form action="{{route('registerform.post')}}"  method="post">
+              <form action="{{route('registerform.post')}}"  method="POST">
                       @csrf
 
                         <div class="form-outline mb-3">

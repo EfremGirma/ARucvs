@@ -1,8 +1,8 @@
-@extends('layout')
+@extends('include/layout')
 @section('title','Signup Page')
-<!-- @section('style')
-{{ asset('css/signup.css') }}
-@endsection -->
+@section('favoic')
+{{asset('img/photo_2020-12-25_08-17-23.jpg')}}
+@endsection
 @section('content')
 <section class="vh-70" style="background-color: #9A616D;">
   <div class="container py-5 h-65">
@@ -55,7 +55,7 @@
                           <label class="form-check-label" for="remember">
                             Remember me
                           </label>
-                          <a class="small text-muted ms-5" href="#!">Forgot password?</a>
+                          <a class="small text-muted ms-5" href="{{ route('password.request') }}">Forgot password?</a>
                       
                         </div>
                   <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account yet? <a href="{{route('registerform.get')}}"

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('/include/layout')
 @section('title', 'myteam | contact')
 @section('style')
 {{asset('css/aboutstyle.css')}}

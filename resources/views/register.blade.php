@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('.include.layout')
 @section('title','Student Form_ARUCVS')
 @section('style')
 {{asset('css/Registerstyle.css')}}
