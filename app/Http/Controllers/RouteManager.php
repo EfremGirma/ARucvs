@@ -15,12 +15,6 @@ class RouteManager extends Controller
      public function homeGet(){
         return view('home');
     }
-     public function aboutGet(){
-        return view('aboutus');
-    }
-     public function contactusGet(){
-        return view('contactus');
-    }
      public function registerGet(){
         return view('registerform');
     }
@@ -33,14 +27,5 @@ class RouteManager extends Controller
      public function verifycvGet(){
         return view('verifycv');
     }
-    public function userhomeGet(){
-        return view('user/userhome');
-    }
-
-    public function adminhomeGet(){
-        return view('admin/Adminhome');
-    }
-    public function managerhomeGet(){
-        return view('manager/Managerhome');
-    }
+    
 }

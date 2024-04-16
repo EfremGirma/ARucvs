@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\AccessoriesManager;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RouteManager;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,13 @@ Route::get('/contactus', 'contactusGet')->name('contactus.get');
 Route::get('/adminhome', 'adminhomeGet')->name('adminhome.get');
 
 });
+Route::controller(AccessoriesManager::class)->group(function () {
+Route::get('/contactus', 'contactusGet')->name('contactus.get');
+Route::get('/aboutus',  'aboutGet')->name('aboutus.get');
+Route::get('/managerprofile','managerprofileGet')->name('managerprofile.get');
+    Route::get('/adminprofile','adminprofileGet')->name('adminprofile.get');
+    Route::get('/userprofile','userprofileGet')->name('userprofile.get');
+});
 // Route By Post
 Route::controller(AuthManager::class)->group(function () {
     Route::post('/', 'homePost')->name('home.post');
@@ -42,16 +50,16 @@ Route::controller(HomeController::class)->group(function () {
 
 // Manager Route List
 Route::middleware(['auth','user-access:Manager'])->group(function(){
-    Route::get('/manager/home',[RouteManager::class,'managerhomeGet'])->name('managerhome.get');
+    Route::get('/manager/home',[HomeController::class,'managerhomeGet'])->name('managerhome.get');
 });
 // Admin Route List
 Route::middleware(['auth', 'user-access:Admin'])->group(function (){
-    Route::get('/admin/home',[RouteManager::class,'adminhomeGet'])->name('adminhome.get');
+    Route::get('/admin/home',[HomeController::class,'adminhomeGet'])->name('adminhome.get');
 });
 
 // Normal Users Routes List
 Route::middleware(['auth', 'user-access:User'])->group(function(){
-    Route::get('/home',[RouteManager::class,'userhomeGet'])->name('userhome.get');
+    Route::get('/user/home',[HomeController::class,'userhomeGet'])->name('userhome.get');
 });
 
 

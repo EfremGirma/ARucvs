@@ -86,8 +86,16 @@
 			@if (Route::has('login'))
                 
                     @auth
-                      
-					  <li class="nav-item"><a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a></li>  
+					@if(auth()->check()) {{-- Check if user is logged in --}}
+    @if(auth()->user()->type == 'Admin')
+        <li class="nav-item"><a href="{{ url('/admin/home') }}" class="nav-link mr-auto">Admin Home</a></li>
+    @elseif(auth()->user()->type == 'Manager')
+        <li class="nav-item"><a href="{{ url('/manager/home') }}" class="nav-link mr-auto">Manager Home</a></li>
+    @else
+        <li class="nav-item"><a href="{{ url('/user/home') }}" class="nav-link mr-auto">Home</a></li>
+    @endif
+@endif
+
                     @else
 					<li class="nav-item my-auto"><a href="{{ route('login') }}" class="nav-link mr-auto">Log in</a></li>
 		
@@ -281,7 +289,7 @@
 		            <div class="block-18">
 		            	<div class="icon"><span class="flaticon-doctor"></span></div>
 		              <div class="text">
-		                <strong class="number" data-number="18">0</strong>
+		                <strong class="number" data-number="1453">0</strong>
 		                <span>Certified Teachers</span>
 		              </div>
 		            </div>
@@ -290,7 +298,7 @@
 		            <div class="block-18">
 		            	<div class="icon"><span class="flaticon-doctor"></span></div>
 		              <div class="text">
-		                <strong class="number" data-number="401">0</strong>
+		                <strong class="number" data-number="100348000">0</strong>
 		                <span>Students</span>
 		              </div>
 		            </div>
@@ -299,7 +307,7 @@
 		            <div class="block-18">
 		            	<div class="icon"><span class="flaticon-doctor"></span></div>
 		              <div class="text">
-		                <strong class="number" data-number="30">0</strong>
+		                <strong class="number" data-number="360">0</strong>
 		                <span>Courses</span>
 		              </div>
 		            </div>
@@ -308,7 +316,7 @@
 		            <div class="block-18">
 		            	<div class="icon"><span class="flaticon-doctor"></span></div>
 		              <div class="text">
-		                <strong class="number" data-number="50">0</strong>
+		                <strong class="number" data-number="150">0</strong>
 		                <span>Awards Won</span>
 		              </div>
 		            </div>
